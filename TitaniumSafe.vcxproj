@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="HillCipher.cpp" />
+    <ClCompile Include="PasswordSystem.cpp" />
     <ClCompile Include="RSACipher.cpp" />
     <ClCompile Include="ShowMenu.cpp" />
     <ClCompile Include="TitaniumSafe.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Ciphers.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="PasswordSystem.h" />
     <ClInclude Include="ShowMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

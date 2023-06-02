@@ -9,6 +9,9 @@
 using namespace std;
 
 extern string PREFIX;
+extern string filename;
+extern string encryptedFile;
+extern string decryptedFile;
 
 // Функция для шифровки
 string vigenereEncrypt(const string& plaintext, const string& key)
@@ -52,6 +55,14 @@ string vigenereDecrypt(const string& ciphertext, const string& key)
 	return decryptedText;
 }
 
+bool isEnglishText(const string& text) {
+	for (char c : text) {
+		if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
+			return false;
+	}
+	return true;
+}
+
 void cipherVigener()
 {
 	showCipherMenu("Vigener");
@@ -77,39 +88,54 @@ void cipherVigener()
 				cin.ignore();
 				getline(cin, message);
 
+				if (saveToFile(filename, message))
+				{
+					cout << "\n[" << PREFIX << "] Файл записан: " << filename << std::endl;
+				}
+
 				string key;
-				cout << "Введите ключ шифрования >> ";
-				cin >> key;
+				while (true)
+				{
+					cout << "Введите ключ шифрования >> ";
+					cin.ignore();
+					cin >> key;
 
-				string filename;
-				cout << "Введите имя файла, куда будет сохранен результат >> ";
-				cin >> filename;
-
-				filename += ".txt";
-
-				if (fileExists(filename)) { throw runtime_error("Файл уже существует"); }
+					if (isEnglishText(key)) { break; }
+					cout << "\n[" << PREFIX << "] Ошибка: Ключ должен быть на английском языке" << endl;
+				}
 
 				string result = vigenereEncrypt(message, key);
-				saveToFile(filename, result);
+				if (saveToFile(encryptedFile, result)) 
+				{ 
+					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << std::endl;
+				}
+
 				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
 				break;
 			}
 
 			case 2:
 			{
-				string filename;
-				cout << "Введите имя файла, откуда будет взят текст >> ";
-				cin >> filename;
-
-				filename += ".txt";
-				string message = readFromFile(filename);
-
 				string key;
-				cout << "Введите ключ шифрования >> ";
-				cin >> key;
+				while (true)
+				{
+					cout << "Введите ключ шифрования >> ";
+					cin.ignore();
+					cin >> key;
 
+					if (isEnglishText(key)) { break; }
+					cout << "\n[" << PREFIX << "] Ошибка: Ключ должен быть на английском языке" << endl;
+				}
+
+				string message = readFromFile(encryptedFile);
 				string result = vigenereDecrypt(message, key);
-				cout << result << " " << endl;
+
+				if (saveToFile(decryptedFile, result))
+				{
+					cout << "\n[" << PREFIX << "] Файл записан: " << decryptedFile << std::endl;
+				}
+				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
+
 				break;
 			}
 

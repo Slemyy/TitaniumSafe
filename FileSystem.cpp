@@ -5,7 +5,9 @@
 
 using namespace std;
 
-extern string PREFIX;
+string filename = "plaintext.txt";
+string encryptedFile = "encrypted.txt";
+string decryptedFile = "decrypted.txt";
 
 // Проверка на то, создан ли файл
 bool fileExists(const string& filename)
@@ -17,24 +19,31 @@ bool fileExists(const string& filename)
 // Функция для чтения текста из файла
 string readFromFile(const string& filename)
 {
-	ifstream file(filename);
-	if (!file) throw runtime_error("Не удалось прочитать файл");
-
 	string content;
-	string line;
-	while (getline(file, line)) { content += line; }
+	ifstream file(filename);
 
-	file.close();
+	if (file.is_open())
+	{
+		string line;
+		while (getline(file, line)) { content += line; }
+		file.close();
+	}
+
+	else throw runtime_error("Не удалось прочитать файл");
 	return content;
 }
 
 // Функция для создания файла
-void saveToFile(const string& filename, const string& content)
+bool saveToFile(const string& filename, const string& content)
 {
 	ofstream file(filename);
 
-	file << content; // Создаем файл и записываем в него информацию.
+	if (file.is_open())
+	{
+		file << content; // Создаем файл и записываем в него информацию.
+		file.close();
+		return true;
+	}
 
-	file.close();
-	cout << "\n[" << PREFIX << "] Файл создан: " << filename << std::endl;
+	else throw runtime_error("Не удалось открыть файл");
 }

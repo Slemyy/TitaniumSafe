@@ -6,20 +6,11 @@
 
 #include "ShowMenu.h"
 #include "Ciphers.h"
+#include "PasswordSystem.h"
 
 using namespace std;
 
 string PREFIX = "TitaniumSafe";
-
-// Функция для ввода пароля.
-bool enterPassword() {
-	string password;
-	cout << "Введите пароль >> ";
-	cin >> password;
-
-	// Делаем проверку на правильно пароля.
-	return password == "password";
-}
 
 int main()
 {
