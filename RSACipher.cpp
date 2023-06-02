@@ -1,10 +1,17 @@
 #include "Ciphers.h"
 #include "ShowMenu.h"
+#include "FileSystem.h"
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
+
+extern string PREFIX;
+extern string filename;
+extern string encryptedFile;
+extern string decryptedFile;
+extern const char* SYSTEM_CLEAR;
 
 vector<int> encrypt(string text, int publicKey1, int publicKey2)
 {

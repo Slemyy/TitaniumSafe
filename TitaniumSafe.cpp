@@ -11,6 +11,7 @@
 using namespace std;
 
 string PREFIX = "TitaniumSafe";
+const char* SYSTEM_CLEAR = "cls";
 
 int main()
 {
@@ -42,28 +43,28 @@ int main()
 			{
 			case 1:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cipherVigener();
 				break;
 			}
 
 			case 2:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cipherHill();
 				break;
 			}
 
 			case 3:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cipherRSA();
 				break;
 			}
 
 			case 4:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cout << "[" << PREFIX << "] Консоль успешно очищена.\n" << endl;
 				showMenu();
 				break;

@@ -12,6 +12,7 @@ extern string PREFIX;
 extern string filename;
 extern string encryptedFile;
 extern string decryptedFile;
+extern const char* SYSTEM_CLEAR;
 
 // Функция для шифровки
 string vigenereEncrypt(const string& plaintext, const string& key)
@@ -97,7 +98,6 @@ void cipherVigener()
 				while (true)
 				{
 					cout << "Введите ключ шифрования >> ";
-					cin.ignore();
 					cin >> key;
 
 					if (isEnglishText(key)) { break; }
@@ -120,7 +120,6 @@ void cipherVigener()
 				while (true)
 				{
 					cout << "Введите ключ шифрования >> ";
-					cin.ignore();
 					cin >> key;
 
 					if (isEnglishText(key)) { break; }
@@ -141,7 +140,7 @@ void cipherVigener()
 
 			case 3:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cout << "[" << PREFIX << "] Консоль успешно очищена.\n" << endl;
 				showCipherMenu("Vigener");
 				break;
@@ -149,7 +148,7 @@ void cipherVigener()
 
 			case 4:
 			{
-				system("cls");
+				system(SYSTEM_CLEAR);
 				cout << "[" << PREFIX << "] Вы вернулись в начальное меню." << endl << endl;
 				showMenu();
 				return;
