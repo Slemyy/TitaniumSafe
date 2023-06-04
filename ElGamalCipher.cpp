@@ -1,7 +1,7 @@
 #include "Ciphers.h"
 #include "ShowMenu.h"
 
-void cipherHill()
+void cipherElGamal()
 {
 	showCipherMenu("Hill");
 }

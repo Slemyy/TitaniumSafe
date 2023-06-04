@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FileSystem.cpp" />
-    <ClCompile Include="HillCipher.cpp" />
+    <ClCompile Include="ElGamalCipher.cpp" />
     <ClCompile Include="PasswordSystem.cpp" />
     <ClCompile Include="RSACipher.cpp" />
     <ClCompile Include="ShowMenu.cpp" />

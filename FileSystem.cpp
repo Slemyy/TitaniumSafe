@@ -28,7 +28,7 @@ string readFromFile(const string& filename)
 		while (getline(file, line)) { content += line; }
 		file.close();
 	}
-
+	
 	else throw runtime_error("Не удалось прочитать файл");
 	return content;
 }

@@ -27,7 +27,7 @@
     <ClCompile Include="RSACipher.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="HillCipher.cpp">
+    <ClCompile Include="ElGamalCipher.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="FileSystem.cpp">

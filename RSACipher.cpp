@@ -55,4 +55,9 @@ string decrypt(vector<int> text, int privateKey, int modulus)
 void cipherRSA()
 {
 	showCipherMenu("RSA");
+
+    //while (true)
+    //{
+    //    cout << "\nВыберите необходимое действие (введите соответствующую цифру) >> ";
+    //}
 }
