@@ -33,6 +33,25 @@ string readFromFile(const string& filename)
 	return content;
 }
 
+// Функция для чтения текста из файла
+vector<int> readFromFile(const string& filename, const string& type)
+{
+	vector<int> content, result;
+	ifstream file(filename);
+
+	if (file.is_open())
+	{
+		int number;
+		while (file >> number) {
+			result.push_back(number);
+		}
+		file.close();
+	}
+	else throw runtime_error("Не удалось прочитать файл");
+
+	return result;
+}
+
 // Функция для создания файла
 bool saveToFile(const string& filename, const string& content)
 {
@@ -41,6 +60,25 @@ bool saveToFile(const string& filename, const string& content)
 	if (file.is_open())
 	{
 		file << content; // Создаем файл и записываем в него информацию.
+		file.close();
+		return true;
+	}
+
+	else throw runtime_error("Не удалось открыть файл");
+}
+
+// Функция для создания файла
+bool saveToFile(const string& filename, const vector<int>& content)
+{
+	ofstream file(filename);
+
+	if (file.is_open())
+	{
+		for (const auto& i : content)
+		{
+			file << i << " "; // Создаем файл и записываем в него информацию.
+		}
+
 		file.close();
 		return true;
 	}

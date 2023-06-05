@@ -18,7 +18,7 @@ void showMenu()
 void showCipherMenu(const string& name)
 {
 	if (name == "Vigener") { cout << "============ The Vigener Cipher ============" << endl; }
-	if (name == "Hill") { cout << "============ El Gamal 's Cipher ============" << endl; }
+	if (name == "ElGamal") { cout << "============ El Gamal 's Cipher ============" << endl; }
 	if (name == "RSA") { cout << "============== The RSA Cipher ==============" << endl; }
 
 	cout << "1. Зашифровать текст" << endl;

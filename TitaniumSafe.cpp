@@ -18,12 +18,7 @@ int main()
 	system("chcp 1251 > nul");
 
 	// Делаем проверку на ввод пароля.
-	while (true)
-	{
-		bool isPass = enterPassword();
-		if (!isPass) cout << "\n[" << PREFIX << "] Неверный пароль. В доступе отказано." << endl;
-		else break;
-	}
+	checkPass();
 
 	cout << endl;
 	showMenu();
@@ -51,7 +46,7 @@ int main()
 			case 2:
 			{
 				system(SYSTEM_CLEAR);
-				cipherHill();
+				cipherElGamal();
 				break;
 			}
 

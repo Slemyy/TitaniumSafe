@@ -3,5 +3,5 @@
 
 void cipherElGamal()
 {
-	showCipherMenu("Hill");
+	showCipherMenu("ElGamal");
 }

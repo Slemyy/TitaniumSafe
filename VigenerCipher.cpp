@@ -1,9 +1,9 @@
 #include "Ciphers.h"
 #include "ShowMenu.h"
 #include "FileSystem.h"
+#include "PasswordSystem.h"
 
 #include <iostream>
-#include <fstream>
 #include <string>
 
 using namespace std;
@@ -84,6 +84,9 @@ void cipherVigener()
 			{
 			case 1:
 			{
+				// Делаем проверку на ввод пароля.
+				checkPass();
+
 				string message;
 				cout << "\nВведите текст для шифрования >> ";
 				cin.ignore();
@@ -91,7 +94,7 @@ void cipherVigener()
 
 				if (saveToFile(filename, message))
 				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << filename << std::endl;
+					cout << "\n[" << PREFIX << "] Файл записан: " << filename << endl;
 				}
 
 				string key;
@@ -107,7 +110,7 @@ void cipherVigener()
 				string result = vigenereEncrypt(message, key);
 				if (saveToFile(encryptedFile, result)) 
 				{ 
-					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << std::endl;
+					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << endl;
 				}
 
 				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
@@ -116,6 +119,9 @@ void cipherVigener()
 
 			case 2:
 			{
+				// Делаем проверку на ввод пароля.
+				checkPass();
+
 				string key;
 				while (true)
 				{
@@ -131,7 +137,7 @@ void cipherVigener()
 
 				if (saveToFile(decryptedFile, result))
 				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << decryptedFile << std::endl;
+					cout << "\n[" << PREFIX << "] Файл записан: " << decryptedFile << endl;
 				}
 				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
 
