@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -33,6 +34,13 @@ string readFromFile(const string& filename)
 	return content;
 }
 
+bool isNumber(const string& s) {
+	istringstream iss(s);
+	double dummy;
+	iss >> noskipws >> dummy;
+	return iss.eof() && !iss.fail();
+}
+
 // Функция для чтения текста из файла
 vector<int> readFromFile(const string& filename, const string& type)
 {
@@ -41,10 +49,19 @@ vector<int> readFromFile(const string& filename, const string& type)
 
 	if (file.is_open())
 	{
+		string input;
 		int number;
-		while (file >> number) {
+		while (file >> input) {
+			if (!isNumber(input)) throw runtime_error("Файл должен состоять только из цифр");
+			number = stoi(input);
 			result.push_back(number);
 		}
+
+		if (type == "ElGamal")
+		{
+			if (result.size() < 2) throw runtime_error("В файле должно быть больше цифр");
+		}
+
 		file.close();
 	}
 	else throw runtime_error("Не удалось прочитать файл");

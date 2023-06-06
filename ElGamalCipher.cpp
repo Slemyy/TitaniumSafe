@@ -153,7 +153,7 @@ void cipherElGamal()
 				string file;
 				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
 				cin >> file;
-				vector<int> message = readFromFile(file, "vector");
+				vector<int> message = readFromFile(file, "ElGamal");
 
 				string key;
 				cout << "Введите закрытый ключ шифрования (Пример: 271523) >> ";

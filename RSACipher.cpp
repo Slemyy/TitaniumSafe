@@ -163,7 +163,7 @@ void cipherRSA()
 				string file;
 				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
 				cin >> file;
-				vector<int> message = readFromFile(file, "vector");
+				vector<int> message = readFromFile(file, "RSA");
 
 				string keyD, keyN;
 				cout << "Введите закрытый ключ шифрования (Пример: 271 523) >> ";
