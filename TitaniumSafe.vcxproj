@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="ElGamalCipher.cpp" />
+    <ClCompile Include="HelperSystem.cpp" />
     <ClCompile Include="PasswordSystem.cpp" />
     <ClCompile Include="RSACipher.cpp" />
     <ClCompile Include="ShowMenu.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Ciphers.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="HelperSystem.h" />
     <ClInclude Include="PasswordSystem.h" />
     <ClInclude Include="ShowMenu.h" />
   </ItemGroup>

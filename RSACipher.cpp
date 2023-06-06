@@ -2,6 +2,7 @@
 #include "ShowMenu.h"
 #include "FileSystem.h"
 #include "PasswordSystem.h"
+#include "HelperSystem.h"
 
 #include <iostream>
 #include <vector>
@@ -17,32 +18,11 @@ extern string encryptedFile;
 extern string decryptedFile;
 extern const char* SYSTEM_CLEAR;
 
-ostream& operator<<(ostream& os, const vector<int>& v) {
-	for (const auto& i : v) { os << i << " "; }
-	return os;
-}
-
-// Функция для проверки, является ли число простым
-bool isPrime(const int& number) {
-	if (number <= 1) { return false; }
-	if (number == 2 || number == 3) { return true; }
-	if (number % 2 == 0 || number % 3 == 0) { return false; }
-
-	int sqrtNumber = static_cast<int>(sqrt(number));
-	for (int i = 5; i <= sqrtNumber; i += 6) {
-		if (number % i == 0 || number % (i + 2) == 0) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
 // Функция для генерации простых чисел в заданном диапазоне
 int generatePrime(int lowerBound, int upperBound) {
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> dist(lowerBound, upperBound);
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<int> dist(lowerBound, upperBound);
 
 	while (true) {
 		__int64 num = dist(gen);
@@ -50,35 +30,6 @@ int generatePrime(int lowerBound, int upperBound) {
 			return num;
 		}
 	}
-}
-
-// Функция для нахождения модуля. 
-__int64 findMod(__int64 number, __int64 degree, __int64 module) {
-	__int64 result = 1;
-	number %= module;
-
-	while (degree > 0) {
-		__int64 d = degree % 10;
-		degree /= 10;
-
-		for (__int64 i = 0; i < d; i++) {
-			result = (result * number) % module;
-		}
-
-		__int64 temp = number;
-		for (__int64 i = 1; i < 10; i++) {
-			number = (number * temp) % module;
-		}
-	}
-
-	return result;
-}
-
-// Функция для вычисления наибольшего общего делителя
-__int64 gcd(__int64 a, __int64 b) {
-	if (a < b) { return(gcd(b, a)); }
-	else if (a % b == 0) { return b; }
-	else { return(gcd(b, a % b)); }
 }
 
 // Функция для нахождения обратного элемента в кольце по модулю
@@ -144,19 +95,17 @@ vector<int> RSAEncrypt(vector<int>& plaintext, __int64 e, __int64 n) {
 }
 
 string RSADecrypt(vector<int>& ciphertext, __int64 d, __int64 n) {
-	string str;
-	vector<char> Decr;
+	vector<char> decryptedResult;
+
 	for (int i = 0; i < ciphertext.size(); i++)
 	{
-		__int64 Decryp = findMod(ciphertext[i], d, n);
-		char a = (char)Decryp;
-		Decr.push_back(a);
-	}
-	for (auto i : Decr) {
-		str += i;
+		char a = static_cast<char>(findMod(ciphertext[i], d, n));
+		decryptedResult.push_back(a);
 	}
 
-	return str;
+	string decryptedText;
+	for (auto i : decryptedResult) { decryptedText += i; }
+	return decryptedText;
 }
 
 void cipherRSA()
@@ -164,12 +113,7 @@ void cipherRSA()
 	showCipherMenu("RSA");
 
 	int p = 0, q = 0;
-	// Оптимальные значения.
-	//p = generatePrime(10000, 46000);
-	//q = generatePrime(10000, 46000);
-
 	__int64 n = 0, e = 0, d = 0;
-	//generateRSAKeys(p, q, n, e, d);
 
 	while (true)
 	{
@@ -210,7 +154,6 @@ void cipherRSA()
 				for (const auto& i : message) { ASCIIMessage.push_back(static_cast<double>(i)); }
 		
 				vector<int> resultEncrypt = RSAEncrypt(ASCIIMessage, e, n);
-
 				if (saveToFile(encryptedFile, resultEncrypt))
 				{
 					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << endl;
