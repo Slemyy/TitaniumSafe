@@ -128,18 +128,10 @@ void cipherElGamal()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
+				string message = methodOfOperation();
+
 				cout << "\n[" << PREFIX << "] Открытый ключ: (" << p << ", " << g << ", " << y << ")" << endl;
 				cout << "[" << PREFIX << "] Закрытый ключ: (" << x << ")" << endl;
-
-				string message;
-				cout << "\nВведите текст для шифрования >> ";
-				cin.ignore();
-				getline(cin, message);
-
-				if (saveToFile(filename, message))
-				{
-					cout << "[" << PREFIX << "] Файл записан: " << filename << endl;
-				}
 
 				vector<int> resultEncrypt = ElGamalEncrypt(message, p, e);
 				resultEncrypt.push_back(p); resultEncrypt.push_back(r);
@@ -158,12 +150,16 @@ void cipherElGamal()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
+				string file;
+				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
+				cin >> file;
+				vector<int> message = readFromFile(file, "vector");
+
 				string key;
 				cout << "Введите закрытый ключ шифрования (Пример: 271523) >> ";
 				cin >> key;
 				x = stoll(key);
 
-				vector<int> message = readFromFile(encryptedFile, "vector");
 				pair<__int64, __int64> p = { message[message.size() - 2], message[message.size() - 1] };
 				message.resize(message.size() - 2);
 				string result = ElGamalDecrypt(message, p.first, x, p.second);

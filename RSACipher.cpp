@@ -137,18 +137,10 @@ void cipherRSA()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
+				string message = methodOfOperation();
+
 				cout << "\n[" << PREFIX << "] Открытый ключ: (" << e << ", " << n << ")" << endl;
 				cout << "[" << PREFIX << "] Закрытый ключ: (" << d << ", " << n << ")" << endl;
-
-				string message;
-				cout << "\nВведите текст для шифрования >> ";
-				cin.ignore();
-				getline(cin, message);
-
-				if (saveToFile(filename, message))
-				{
-					cout << "[" << PREFIX << "] Файл записан: " << filename << endl;
-				}
 
 				vector<int> ASCIIMessage;
 				for (const auto& i : message) { ASCIIMessage.push_back(static_cast<double>(i)); }
@@ -168,7 +160,10 @@ void cipherRSA()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
-				vector<int> message = readFromFile(encryptedFile, "vector");
+				string file;
+				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
+				cin >> file;
+				vector<int> message = readFromFile(file, "vector");
 
 				string keyD, keyN;
 				cout << "Введите закрытый ключ шифрования (Пример: 271 523) >> ";

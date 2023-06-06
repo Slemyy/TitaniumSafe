@@ -13,3 +13,6 @@ bool isPrime(const int& number);
 
 // Функция для вычисления наибольшего общего делителя
 __int64 gcd(__int64 a, __int64 b);
+
+// Функция для выбора оцерации ввода текста.
+std::string methodOfOperation();

@@ -2,6 +2,7 @@
 #include "ShowMenu.h"
 #include "FileSystem.h"
 #include "PasswordSystem.h"
+#include "HelperSystem.h"
 
 #include <iostream>
 #include <string>
@@ -87,20 +88,12 @@ void cipherVigener()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
-				string message;
-				cout << "\nВведите текст для шифрования >> ";
-				cin.ignore();
-				getline(cin, message);
-
-				if (saveToFile(filename, message))
-				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << filename << endl;
-				}
+				string message = methodOfOperation();
 
 				string key;
 				while (true)
 				{
-					cout << "Введите ключ шифрования >> ";
+					cout << "Введите ключ шифрования (Одно слово на английском языке) >> ";
 					cin >> key;
 
 					if (isEnglishText(key)) { break; }
@@ -122,6 +115,11 @@ void cipherVigener()
 				// Делаем проверку на ввод пароля.
 				checkPass();
 
+				string file;
+				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
+				cin >> file;
+				string message = readFromFile(file);
+
 				string key;
 				while (true)
 				{
@@ -132,7 +130,6 @@ void cipherVigener()
 					cout << "\n[" << PREFIX << "] Ошибка: Ключ должен быть на английском языке" << endl;
 				}
 
-				string message = readFromFile(encryptedFile);
 				string result = vigenereDecrypt(message, key);
 
 				if (saveToFile(decryptedFile, result))
