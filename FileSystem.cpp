@@ -17,9 +17,18 @@ bool fileExists(const string& filename)
 	return file.good();
 }
 
+bool isEnglish(const string& text) {
+	for (char c : text) {
+		if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||  (c == '.')))
+			return false;
+	}
+	return true;
+}
+
 // Функция для чтения текста из файла
 string readFromFile(const string& filename)
 {
+	if (!isEnglish(filename)) throw runtime_error("Название файла должно быть на английском языке");
 	string content;
 	ifstream file(filename);
 
@@ -44,6 +53,7 @@ bool isNumber(const string& s) {
 // Функция для чтения текста из файла
 vector<int> readFromFile(const string& filename, const string& type)
 {
+	if (!isEnglish(filename)) throw runtime_error("Название файла должно быть на английском языке");
 	vector<int> content, result;
 	ifstream file(filename);
 
