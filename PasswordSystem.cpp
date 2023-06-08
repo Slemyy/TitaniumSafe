@@ -1,4 +1,4 @@
-#include "PasswordSystem.h"
+п»ї#include "PasswordSystem.h"
 
 #include <iostream>
 
@@ -7,23 +7,23 @@ using namespace std;
 extern string PREFIX;
 string accessPassword = "password";
 
-// Функция для ввода пароля.
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РІРІРѕРґР° РїР°СЂРѕР»СЏ.
 bool enterPassword() {
 	string password;
-	cout << "Введите пароль >> ";
+	cout << "Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ >> ";
 	cin >> password;
 
-	// Делаем проверку на правильно пароля.
+	// Р”РµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РїСЂР°РІРёР»СЊРЅРѕ РїР°СЂРѕР»СЏ.
 	return password == accessPassword;
 }
 
-// Для проверки пароля.
+// Р”Р»СЏ РїСЂРѕРІРµСЂРєРё РїР°СЂРѕР»СЏ.
 void checkPass()
 {
 	while (true)
 	{
 		bool isPass = enterPassword();
-		if (!isPass) cout << "\n[" << PREFIX << "] Неверный пароль. В доступе отказано." << endl;
+		if (!isPass) cout << "\n[" << PREFIX << "] РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ. Р’ РґРѕСЃС‚СѓРїРµ РѕС‚РєР°Р·Р°РЅРѕ." << endl;
 		else break;
 	}
 }

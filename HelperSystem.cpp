@@ -1,4 +1,4 @@
-#include "HelperSystem.h"
+п»ї#include "HelperSystem.h"
 #include "FileSystem.h"
 
 #include <iostream>
@@ -14,7 +14,7 @@ ostream& operator<<(ostream& os, const vector<int>& v) {
 	return os;
 }
 
-// Функция для проверки, является ли число простым
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЏРІР»СЏРµС‚СЃСЏ Р»Рё С‡РёСЃР»Рѕ РїСЂРѕСЃС‚С‹Рј
 bool isPrime(const int& number) {
 	if (number <= 1) { return false; }
 	if (number == 2 || number == 3) { return true; }
@@ -30,7 +30,7 @@ bool isPrime(const int& number) {
 	return true;
 }
 
-// Функция для нахождения модуля. 
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РјРѕРґСѓР»СЏ. 
 __int64 findMod(__int64 number, __int64 degree, __int64 module) {
 	__int64 result = 1;
 	number %= module;
@@ -52,7 +52,7 @@ __int64 findMod(__int64 number, __int64 degree, __int64 module) {
 	return result;
 }
 
-// Функция для вычисления наибольшего общего делителя
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ РѕР±С‰РµРіРѕ РґРµР»РёС‚РµР»СЏ
 __int64 gcd(__int64 a, __int64 b) {
 	if (a < b) { return(gcd(b, a)); }
 	else if (a % b == 0) { return b; }
@@ -62,29 +62,29 @@ __int64 gcd(__int64 a, __int64 b) {
 string methodOfOperation()
 {
 	string choiseVar;
-	cout << "Выберите вариацию получения сообщения (file | console) >> ";
+	cout << "Р’С‹Р±РµСЂРёС‚Рµ РІР°СЂРёР°С†РёСЋ РїРѕР»СѓС‡РµРЅРёСЏ СЃРѕРѕР±С‰РµРЅРёСЏ (file | console) >> ";
 	cin >> choiseVar;
 
 	string message;
 	if (choiseVar == "console")
 	{
-		cout << "Введите текст для шифрования >> ";
+		cout << "Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ >> ";
 		cin.ignore();
 		getline(cin, message);
 
 		if (saveToFile(filename, message))
 		{
-			cout << "\n[" << PREFIX << "] Файл записан: " << filename << endl;
+			cout << "\n[" << PREFIX << "] Р¤Р°Р№Р» Р·Р°РїРёСЃР°РЅ: " << filename << endl;
 		}
 	}
 	else if (choiseVar == "file")
 	{
 		string file;
-		cout << "Введите название файла (Пример: text.txt) >> ";
+		cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° (РџСЂРёРјРµСЂ: text.txt) >> ";
 		cin >> file;
 		message = readFromFile(file);
 	}
-	else throw runtime_error("Некорректный выбор. Такого варианта не существует");
+	else throw runtime_error("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІС‹Р±РѕСЂ. РўР°РєРѕРіРѕ РІР°СЂРёР°РЅС‚Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
 	return message;
 }

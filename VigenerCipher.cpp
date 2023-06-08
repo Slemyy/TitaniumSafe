@@ -1,4 +1,4 @@
-#include "Ciphers.h"
+п»ї#include "Ciphers.h"
 #include "ShowMenu.h"
 #include "FileSystem.h"
 #include "PasswordSystem.h"
@@ -15,7 +15,7 @@ extern string encryptedFile;
 extern string decryptedFile;
 extern const char* SYSTEM_CLEAR;
 
-// Функция для шифровки
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІРєРё
 string vigenereEncrypt(const string& plaintext, const string& key)
 {
 	string ciphertext;
@@ -26,7 +26,7 @@ string vigenereEncrypt(const string& plaintext, const string& key)
 	{
 		char currentChar = plaintext[i];
 		char keyChar = key[i % keyLength];
-		int shift = (keyChar + 1) % 256; // Число символов в ASCII таблице
+		int shift = (keyChar + 1) % 256; // Р§РёСЃР»Рѕ СЃРёРјРІРѕР»РѕРІ РІ ASCII С‚Р°Р±Р»РёС†Рµ
 
 		currentChar = (currentChar + shift) % 256;
 
@@ -36,7 +36,7 @@ string vigenereEncrypt(const string& plaintext, const string& key)
 	return ciphertext;
 }
 
-// Функция для дешифровки
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРµС€РёС„СЂРѕРІРєРё
 string vigenereDecrypt(const string& ciphertext, const string& key)
 {
 	string decryptedText;
@@ -47,7 +47,7 @@ string vigenereDecrypt(const string& ciphertext, const string& key)
 	{
 		char currentChar = ciphertext[i];
 		char keyChar = key[i % keyLength];
-		int shift = (keyChar + 1) % 256; // Число символов в ASCII таблице
+		int shift = (keyChar + 1) % 256; // Р§РёСЃР»Рѕ СЃРёРјРІРѕР»РѕРІ РІ ASCII С‚Р°Р±Р»РёС†Рµ
 
 		currentChar = (currentChar - shift + 256) % 256;
 
@@ -71,21 +71,21 @@ void cipherVigener()
 
 	while (true)
 	{
-		cout << "\nВыберите необходимое действие (введите соответствующую цифру) >> ";
+		cout << "\nР’С‹Р±РµСЂРёС‚Рµ РЅРµРѕР±С…РѕРґРёРјРѕРµ РґРµР№СЃС‚РІРёРµ (РІРІРµРґРёС‚Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ С†РёС„СЂСѓ) >> ";
 
 		try
 		{
 			string input;
 			cin >> input;
 
-			// Переводим input в число.
+			// РџРµСЂРµРІРѕРґРёРј input РІ С‡РёСЃР»Рѕ.
 			int choise = stoi(input);
 
 			switch (choise)
 			{
 			case 1:
 			{
-				// Делаем проверку на ввод пароля.
+				// Р”РµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РІРІРѕРґ РїР°СЂРѕР»СЏ.
 				checkPass();
 
 				string message = methodOfOperation();
@@ -93,50 +93,50 @@ void cipherVigener()
 				string key;
 				while (true)
 				{
-					cout << "Введите ключ шифрования (Одно слово на английском языке) >> ";
+					cout << "Р’РІРµРґРёС‚Рµ РєР»СЋС‡ С€РёС„СЂРѕРІР°РЅРёСЏ (РћРґРЅРѕ СЃР»РѕРІРѕ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ) >> ";
 					cin >> key;
 
 					if (isEnglishText(key)) { break; }
-					cout << "\n[" << PREFIX << "] Ошибка: Ключ должен быть на английском языке" << endl;
+					cout << "\n[" << PREFIX << "] РћС€РёР±РєР°: РљР»СЋС‡ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ" << endl;
 				}
 
 				string result = vigenereEncrypt(message, key);
 				if (saveToFile(encryptedFile, result)) 
 				{ 
-					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << endl;
+					cout << "\n[" << PREFIX << "] Р¤Р°Р№Р» Р·Р°РїРёСЃР°РЅ: " << encryptedFile << endl;
 				}
 
-				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
+				cout << "[" << PREFIX << "] РЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°: " << result << endl;
 				break;
 			}
 
 			case 2:
 			{
-				// Делаем проверку на ввод пароля.
+				// Р”РµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РІРІРѕРґ РїР°СЂРѕР»СЏ.
 				checkPass();
 
 				string file;
-				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
+				cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РіРґРµ РЅР°С…РѕРґРёС‚СЃСЏ С€РёС„СЂ (РџСЂРёРјРµСЂ: text.txt) >> ";
 				cin >> file;
 				string message = readFromFile(file);
 
 				string key;
 				while (true)
 				{
-					cout << "Введите ключ шифрования >> ";
+					cout << "Р’РІРµРґРёС‚Рµ РєР»СЋС‡ С€РёС„СЂРѕРІР°РЅРёСЏ >> ";
 					cin >> key;
 
 					if (isEnglishText(key)) { break; }
-					cout << "\n[" << PREFIX << "] Ошибка: Ключ должен быть на английском языке" << endl;
+					cout << "\n[" << PREFIX << "] РћС€РёР±РєР°: РљР»СЋС‡ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ" << endl;
 				}
 
 				string result = vigenereDecrypt(message, key);
 
 				if (saveToFile(decryptedFile, result))
 				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << decryptedFile << endl;
+					cout << "\n[" << PREFIX << "] Р¤Р°Р№Р» Р·Р°РїРёСЃР°РЅ: " << decryptedFile << endl;
 				}
-				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
+				cout << "[" << PREFIX << "] РЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°: " << result << endl;
 
 				break;
 			}
@@ -144,7 +144,7 @@ void cipherVigener()
 			case 3:
 			{
 				system(SYSTEM_CLEAR);
-				cout << "[" << PREFIX << "] Консоль успешно очищена.\n" << endl;
+				cout << "[" << PREFIX << "] РљРѕРЅСЃРѕР»СЊ СѓСЃРїРµС€РЅРѕ РѕС‡РёС‰РµРЅР°.\n" << endl;
 				showCipherMenu("Vigener");
 				break;
 			}
@@ -152,16 +152,16 @@ void cipherVigener()
 			case 4:
 			{
 				system(SYSTEM_CLEAR);
-				cout << "[" << PREFIX << "] Вы вернулись в начальное меню." << endl << endl;
+				cout << "[" << PREFIX << "] Р’С‹ РІРµСЂРЅСѓР»РёСЃСЊ РІ РЅР°С‡Р°Р»СЊРЅРѕРµ РјРµРЅСЋ." << endl << endl;
 				showMenu();
 				return;
 			}
 
 			default:
-				cerr << "\n[" << PREFIX << "] Некорректный выбор. Попробуйте снова.";
+				cerr << "\n[" << PREFIX << "] РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІС‹Р±РѕСЂ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.";
 				break;
 			}
 		}
-		catch (const exception& e) { cerr << "\n[" << PREFIX << "] Ошибка: " << e.what(); }
+		catch (const exception& e) { cerr << "\n[" << PREFIX << "] РћС€РёР±РєР°: " << e.what(); }
 	}
 }

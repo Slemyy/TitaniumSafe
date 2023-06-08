@@ -1,4 +1,4 @@
-#include "Ciphers.h"
+п»ї#include "Ciphers.h"
 #include "ShowMenu.h"
 #include "FileSystem.h"
 #include "PasswordSystem.h"
@@ -18,7 +18,7 @@ extern string encryptedFile;
 extern string decryptedFile;
 extern const char* SYSTEM_CLEAR;
 
-// Функция для генерации чисел в заданном диапазоне
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё С‡РёСЃРµР» РІ Р·Р°РґР°РЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ
 __int64 generateRandom(__int64 lowerBound, __int64 upperBound, bool isSimple = false) {
 	random_device rd;
 	mt19937 gen(rd());
@@ -40,7 +40,7 @@ __int64 generateRandom(__int64 lowerBound, __int64 upperBound, bool isSimple = f
 	return num;
 }
 
-// Функция для генерации секретного ключа
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃРµРєСЂРµС‚РЅРѕРіРѕ РєР»СЋС‡Р°
 __int64 generateNum(__int64 p, bool isPMinusOne = false) {
 	__int64 num;
 	__int64 lowerBound = isPMinusOne ? 1 : 2;
@@ -53,7 +53,7 @@ __int64 generateNum(__int64 p, bool isPMinusOne = false) {
 	return num;
 }
 
-// Нахождение первообразного корня g.
+// РќР°С…РѕР¶РґРµРЅРёРµ РїРµСЂРІРѕРѕР±СЂР°Р·РЅРѕРіРѕ РєРѕСЂРЅСЏ g.
 __int64 primitiveRoot(__int64& p) {
 	__int64 q = (p - 1) / 2;
 	__int64 g;
@@ -65,15 +65,15 @@ __int64 primitiveRoot(__int64& p) {
 	return g;
 }
 
-// Функция для генерации ключей Эль Гамаля.
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё РєР»СЋС‡РµР№ Р­Р»СЊ Р“Р°РјР°Р»СЏ.
 void generateElGamalKeys(__int64& p, __int64& g, __int64& x, __int64& y, __int64& k, __int64& r, __int64& e)
 {
-	g = primitiveRoot(p); // Первообразный корень p
-	x = generateNum(p); // Секретный ключ
-	y = findMod(g, x, p); // Открытый ключ
-	k = generateNum(p, true); // одноразовый секретный ключ
-	r = findMod(g, k, p); // Первая часть шифра
-	e = findMod(y, k, p); // Вторая часть шифра
+	g = primitiveRoot(p); // РџРµСЂРІРѕРѕР±СЂР°Р·РЅС‹Р№ РєРѕСЂРµРЅСЊ p
+	x = generateNum(p); // РЎРµРєСЂРµС‚РЅС‹Р№ РєР»СЋС‡
+	y = findMod(g, x, p); // РћС‚РєСЂС‹С‚С‹Р№ РєР»СЋС‡
+	k = generateNum(p, true); // РѕРґРЅРѕСЂР°Р·РѕРІС‹Р№ СЃРµРєСЂРµС‚РЅС‹Р№ РєР»СЋС‡
+	r = findMod(g, k, p); // РџРµСЂРІР°СЏ С‡Р°СЃС‚СЊ С€РёС„СЂР°
+	e = findMod(y, k, p); // Р’С‚РѕСЂР°СЏ С‡Р°СЃС‚СЊ С€РёС„СЂР°
 }
 
 vector <int> ElGamalEncrypt(string& plaintext, __int64 p, __int64 e) {
@@ -109,13 +109,13 @@ void cipherElGamal()
 
 	while (true)
 	{
-		cout << "\nВыберите необходимое действие (введите соответствующую цифру) >> ";
+		cout << "\nР’С‹Р±РµСЂРёС‚Рµ РЅРµРѕР±С…РѕРґРёРјРѕРµ РґРµР№СЃС‚РІРёРµ (РІРІРµРґРёС‚Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ С†РёС„СЂСѓ) >> ";
 		try
 		{
 			string input;
 			cin >> input;
 
-			// Переводим input в число.
+			// РџРµСЂРµРІРѕРґРёРј input РІ С‡РёСЃР»Рѕ.
 			__int64 choise = stoi(input);
 
 			switch (choise)
@@ -125,38 +125,38 @@ void cipherElGamal()
 				p = generateRandom(1000000000, numeric_limits<int>::max(), true);
 				generateElGamalKeys(p, g, x, y, k, r, e);
 
-				// Делаем проверку на ввод пароля.
+				// Р”РµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РІРІРѕРґ РїР°СЂРѕР»СЏ.
 				checkPass();
 
 				string message = methodOfOperation();
 
-				cout << "\n[" << PREFIX << "] Открытый ключ: (" << p << ", " << g << ", " << y << ")" << endl;
-				cout << "[" << PREFIX << "] Закрытый ключ: (" << x << ")" << endl;
+				cout << "\n[" << PREFIX << "] РћС‚РєСЂС‹С‚С‹Р№ РєР»СЋС‡: (" << p << ", " << g << ", " << y << ")" << endl;
+				cout << "[" << PREFIX << "] Р—Р°РєСЂС‹С‚С‹Р№ РєР»СЋС‡: (" << x << ")" << endl;
 
 				vector<int> resultEncrypt = ElGamalEncrypt(message, p, e);
 				resultEncrypt.push_back(p); resultEncrypt.push_back(r);
 				if (saveToFile(encryptedFile, resultEncrypt))
 				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << encryptedFile << endl;
+					cout << "\n[" << PREFIX << "] Р¤Р°Р№Р» Р·Р°РїРёСЃР°РЅ: " << encryptedFile << endl;
 				}
 
-				cout << "[" << PREFIX << "] Содержимое файла: " << resultEncrypt << endl;
+				cout << "[" << PREFIX << "] РЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°: " << resultEncrypt << endl;
 
 				break;
 			}
 
 			case 2:
 			{
-				// Делаем проверку на ввод пароля.
+				// Р”РµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РІРІРѕРґ РїР°СЂРѕР»СЏ.
 				checkPass();
 
 				string file;
-				cout << "Введите название файла где находится шифр (Пример: text.txt) >> ";
+				cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РіРґРµ РЅР°С…РѕРґРёС‚СЃСЏ С€РёС„СЂ (РџСЂРёРјРµСЂ: text.txt) >> ";
 				cin >> file;
 				vector<int> message = readFromFile(file, "ElGamal");
 
 				string key;
-				cout << "Введите закрытый ключ шифрования (Пример: 271523) >> ";
+				cout << "Р’РІРµРґРёС‚Рµ Р·Р°РєСЂС‹С‚С‹Р№ РєР»СЋС‡ С€РёС„СЂРѕРІР°РЅРёСЏ (РџСЂРёРјРµСЂ: 271523) >> ";
 				cin >> key;
 				x = stoll(key);
 
@@ -166,9 +166,9 @@ void cipherElGamal()
 
 				if (saveToFile(decryptedFile, result))
 				{
-					cout << "\n[" << PREFIX << "] Файл записан: " << decryptedFile << endl;
+					cout << "\n[" << PREFIX << "] Р¤Р°Р№Р» Р·Р°РїРёСЃР°РЅ: " << decryptedFile << endl;
 				}
-				cout << "[" << PREFIX << "] Содержимое файла: " << result << endl;
+				cout << "[" << PREFIX << "] РЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р°: " << result << endl;
 
 				break;
 			}
@@ -176,7 +176,7 @@ void cipherElGamal()
 			case 3:
 			{
 				system(SYSTEM_CLEAR);
-				cout << "[" << PREFIX << "] Консоль успешно очищена.\n" << endl;
+				cout << "[" << PREFIX << "] РљРѕРЅСЃРѕР»СЊ СѓСЃРїРµС€РЅРѕ РѕС‡РёС‰РµРЅР°.\n" << endl;
 				showCipherMenu("ElGamal");
 				break;
 			}
@@ -184,16 +184,16 @@ void cipherElGamal()
 			case 4:
 			{
 				system(SYSTEM_CLEAR);
-				cout << "[" << PREFIX << "] Вы вернулись в начальное меню." << endl << endl;
+				cout << "[" << PREFIX << "] Р’С‹ РІРµСЂРЅСѓР»РёСЃСЊ РІ РЅР°С‡Р°Р»СЊРЅРѕРµ РјРµРЅСЋ." << endl << endl;
 				showMenu();
 				return;
 			}
 
 			default:
-				cerr << "\n[" << PREFIX << "] Некорректный выбор. Попробуйте снова.";
+				cerr << "\n[" << PREFIX << "] РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІС‹Р±РѕСЂ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.";
 				break;
 			}
 		}
-		catch (const exception& e) { cerr << "\n[" << PREFIX << "] Ошибка: " << e.what(); }
+		catch (const exception& e) { cerr << "\n[" << PREFIX << "] РћС€РёР±РєР°: " << e.what(); }
 	}
 }

@@ -1,4 +1,4 @@
-#include "FileSystem.h"
+п»ї#include "FileSystem.h"
 
 #include <fstream>
 #include <string>
@@ -10,7 +10,7 @@ string filename = "plaintext.txt";
 string encryptedFile = "encrypted.txt";
 string decryptedFile = "decrypted.txt";
 
-// Проверка на то, создан ли файл
+// РџСЂРѕРІРµСЂРєР° РЅР° С‚Рѕ, СЃРѕР·РґР°РЅ Р»Рё С„Р°Р№Р»
 bool fileExists(const string& filename)
 {
 	ifstream file(filename);
@@ -25,10 +25,10 @@ bool isEnglish(const string& text) {
 	return true;
 }
 
-// Функция для чтения текста из файла
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С‡С‚РµРЅРёСЏ С‚РµРєСЃС‚Р° РёР· С„Р°Р№Р»Р°
 string readFromFile(const string& filename)
 {
-	if (!isEnglish(filename)) throw runtime_error("Название файла должно быть на английском языке");
+	if (!isEnglish(filename)) throw runtime_error("РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ");
 	string content;
 	ifstream file(filename);
 
@@ -39,7 +39,7 @@ string readFromFile(const string& filename)
 		file.close();
 	}
 	
-	else throw runtime_error("Не удалось прочитать файл");
+	else throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕС‡РёС‚Р°С‚СЊ С„Р°Р№Р»");
 	return content;
 }
 
@@ -50,10 +50,10 @@ bool isNumber(const string& s) {
 	return iss.eof() && !iss.fail();
 }
 
-// Функция для чтения текста из файла
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С‡С‚РµРЅРёСЏ С‚РµРєСЃС‚Р° РёР· С„Р°Р№Р»Р°
 vector<int> readFromFile(const string& filename, const string& type)
 {
-	if (!isEnglish(filename)) throw runtime_error("Название файла должно быть на английском языке");
+	if (!isEnglish(filename)) throw runtime_error("РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ");
 	vector<int> content, result;
 	ifstream file(filename);
 
@@ -62,39 +62,39 @@ vector<int> readFromFile(const string& filename, const string& type)
 		string input;
 		int number;
 		while (file >> input) {
-			if (!isNumber(input)) throw runtime_error("Файл должен состоять только из цифр");
+			if (!isNumber(input)) throw runtime_error("Р¤Р°Р№Р» РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ С‚РѕР»СЊРєРѕ РёР· С†РёС„СЂ");
 			number = stoi(input);
 			result.push_back(number);
 		}
 
 		if (type == "ElGamal")
 		{
-			if (result.size() < 2) throw runtime_error("В файле должно быть больше цифр");
+			if (result.size() < 2) throw runtime_error("Р’ С„Р°Р№Р»Рµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ С†РёС„СЂ");
 		}
 
 		file.close();
 	}
-	else throw runtime_error("Не удалось прочитать файл");
+	else throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕС‡РёС‚Р°С‚СЊ С„Р°Р№Р»");
 
 	return result;
 }
 
-// Функция для создания файла
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р°
 bool saveToFile(const string& filename, const string& content)
 {
 	ofstream file(filename);
 
 	if (file.is_open())
 	{
-		file << content; // Создаем файл и записываем в него информацию.
+		file << content; // РЎРѕР·РґР°РµРј С„Р°Р№Р» Рё Р·Р°РїРёСЃС‹РІР°РµРј РІ РЅРµРіРѕ РёРЅС„РѕСЂРјР°С†РёСЋ.
 		file.close();
 		return true;
 	}
 
-	else throw runtime_error("Не удалось открыть файл");
+	else throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»");
 }
 
-// Функция для создания файла
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р°
 bool saveToFile(const string& filename, const vector<int>& content)
 {
 	ofstream file(filename);
@@ -103,12 +103,12 @@ bool saveToFile(const string& filename, const vector<int>& content)
 	{
 		for (const auto& i : content)
 		{
-			file << i << " "; // Создаем файл и записываем в него информацию.
+			file << i << " "; // РЎРѕР·РґР°РµРј С„Р°Р№Р» Рё Р·Р°РїРёСЃС‹РІР°РµРј РІ РЅРµРіРѕ РёРЅС„РѕСЂРјР°С†РёСЋ.
 		}
 
 		file.close();
 		return true;
 	}
 
-	else throw runtime_error("Не удалось открыть файл");
+	else throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»");
 }

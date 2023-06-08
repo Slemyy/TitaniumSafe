@@ -1,4 +1,4 @@
-#include "ShowMenu.h"
+ï»¿#include "ShowMenu.h"
 
 using namespace std;
 
@@ -7,11 +7,11 @@ extern string PREFIX;
 void showMenu()
 {
 	cout << "=============== " << PREFIX << " ===============" << endl;
-	cout << "1. Øèôð Âèæåíåðà" << endl;
-	cout << "2. Øèôð Ýëü Ãàìàëÿ" << endl;
-	cout << "3. Øèôð RSA" << endl;
-	cout << "4. Î÷èñòêà êîíñîëè" << endl;
-	cout << "5. Âûõîä èç ïðîãðàììû" << endl;
+	cout << "1. Ð¨Ð¸Ñ„Ñ€ Ð’Ð¸Ð¶ÐµÐ½ÐµÑ€Ð°" << endl;
+	cout << "2. Ð¨Ð¸Ñ„Ñ€ Ð­Ð»ÑŒ Ð“Ð°Ð¼Ð°Ð»Ñ" << endl;
+	cout << "3. Ð¨Ð¸Ñ„Ñ€ RSA" << endl;
+	cout << "4. ÐžÑ‡Ð¸ÑÑ‚ÐºÐ° ÐºÐ¾Ð½ÑÐ¾Ð»Ð¸" << endl;
+	cout << "5. Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹" << endl;
 	cout << "============================================" << endl;
 }
 
@@ -21,9 +21,9 @@ void showCipherMenu(const string& name)
 	if (name == "ElGamal") { cout << "============ El Gamal 's Cipher ============" << endl; }
 	if (name == "RSA") { cout << "============== The RSA Cipher ==============" << endl; }
 
-	cout << "1. Çàøèôðîâàòü òåêñò" << endl;
-	cout << "2. Äåøèôðîâàòü òåêñò" << endl;
-	cout << "3. Î÷èñòèòü êîíñîëü" << endl;
-	cout << "4. Âåðíóòüñÿ íàçàä" << endl;
+	cout << "1. Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚" << endl;
+	cout << "2. Ð”ÐµÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚" << endl;
+	cout << "3. ÐžÑ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ ÐºÐ¾Ð½ÑÐ¾Ð»ÑŒ" << endl;
+	cout << "4. Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ Ð½Ð°Ð·Ð°Ð´" << endl;
 	cout << "============================================" << endl;
 }
